@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="song-messages" />
         <module name="song-shop-common" />
         <module name="song-shop-eurekaserver" />
         <module name="song-shop-member" />

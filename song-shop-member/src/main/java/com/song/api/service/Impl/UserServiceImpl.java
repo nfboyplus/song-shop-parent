@@ -37,7 +37,7 @@ public class UserServiceImpl extends BaseApiService implements UserService {
             userServiceManage.register(userEntity);
             return setResultSuccess();
         }catch (Exception e){
-            log.error("---- register() ERROR: -----", e);
+            log.error("--- register() ERROR:", e);
             return setResultError("注册失败!");
         }
     }

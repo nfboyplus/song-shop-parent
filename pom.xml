@@ -12,6 +12,7 @@
         <module>song-shop-api</module>
         <module>song-shop-member</module>
         <module>song-shop-common</module>
+        <module>song-messages</module>
     </modules>
     <packaging>pom</packaging>
 

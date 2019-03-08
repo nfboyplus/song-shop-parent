@@ -48,7 +48,7 @@ public class UserServiceManageImpl implements UserServiceManage {
         Destination activeMQQueue = new ActiveMQQueue(MESSAGES_QUEUE);
         //JSON 组装
         String mailMessage = mailMessage(userEntity.getEmail(), userEntity.getUserName());
-        log.info("----- register() 注册发送邮件报文 mailMessage:{} ----", mailMessage);
+        log.info("----- register() 注册发送邮件报文 mailMessage:{}", mailMessage);
         registerMailboxProducer.send(activeMQQueue, mailMessage);
     }
 
