@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property scope="context" name="LOG_NAME" value="mandao-crm"/>
+    <property scope="context" name="LOG_LEVEL" value="INFO"/>
+    <property scope="context" name="LOG_OUTSIDE_LEVEL" value="INFO"/>
+    <property scope="context" name="LOG_ROOT" value="/data/log/mandao-crm"/>
+    <!-- 控台打印 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="utf-8"> <!-- encoder 可以指定字符集，对于中文输出有意义 -->
+            <!-- %.-1level 只显示信息级别的首字母,%-5level 左对齐显示信息级别全称 -->
+            <!-- 如需自定义关键字，用 %mdc{键名} 表示,程序中用MDC.put("键名","键值")设置，可动态设置 [%logger:%line]-->
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] %c{40} %line --%mdc{client} [%X{TRACE_LOG_ID}] %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- error 级别日志文件 -->
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_ROOT}/${LOG_NAME}-error.log</File>
+        <encoder>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] %c{40} %line --%mdc{client} [%X{TRACE_LOG_ID}] %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT}/${LOG_NAME}-error-%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>512MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 普通日志文件,排除错误日志 -->
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_ROOT}/${LOG_NAME}.log</File>
+        <encoder>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] %c{40} %line --%mdc{client} [%X{TRACE_LOG_ID}] %msg%n</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT}/${LOG_NAME}-%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>512MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 外部jar包 日志级别设置 -->
+    <logger level="${LOG_LEVEL}" name="com.system"/>
+    <logger name="com.mandao.crm.server.dao" level="DEBUG" />
+    <logger name="com.mandao.portal" level="DEBUG" />
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="error"/>
+        <appender-ref ref="logfile"/>
+    </root>
+
+</configuration>
