@@ -13,16 +13,16 @@ spring:
     in-memory: true
     pool:
       enabled: false
-#  mail:
-#    host: smtp.163.com
-#    username: 1406343123@163.com
-#    password: itmayiedu644
-#    enable:  true
-#    smtp:
-#      auth: true
-#    starttls:
-#      enable: true
-#      required: true
+  mail:
+    host: smtp.163.com
+    username: 111111@163.com
+    password:    # POP 授权密码
+    enable:  true
+    smtp:
+      auth: true
+    starttls:
+      enable: true
+      required: true
 
 
 
