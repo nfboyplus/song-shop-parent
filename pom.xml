@@ -13,6 +13,7 @@
         <module>song-shop-member</module>
         <module>song-shop-common</module>
         <module>song-messages</module>
+        <module>song-mobile-web</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -1,0 +1,19 @@
+server:
+      port: 8764
+      context-path: /mobile
+      eureka:
+        client:
+          serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+      spring:
+        freemarker:
+          suffix: .ftl
+          templateEncoding: UTF-8
+          templateLoaderPath: classpath:/templates/
+        application:
+          name: mobile  #请求URL
+
+
+
+
+

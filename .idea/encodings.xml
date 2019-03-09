@@ -3,6 +3,7 @@
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-messages" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/song-mobile-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-api/song-shop-member-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-common" charset="UTF-8" />
