@@ -21,7 +21,7 @@ public class DemoController extends BaseController{
 
     @RequestMapping("/index")
     public String index(HttpServletRequest request, String token) {
-        log.info(" 我的web工程搭建成功啦!");
+        log.info(" 我的web工程搭建成功啦!,userName:{}", getUserEntity(token).getUserName());
         return INDEX;
     }
 
