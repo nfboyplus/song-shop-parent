@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import song.mobile.web.feign.UserFeign;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -33,6 +34,11 @@ public class BaseController {
         String json = new JSONObject().toJSONString(linkedHashMap);
         UserEntity userEntity = new JSONObject().parseObject(json, UserEntity.class);
         return userEntity;
+    }
+
+    public String setError(HttpServletRequest request, String msg, String address) {
+        request.setAttribute("error", msg);
+        return address;
     }
 
 }

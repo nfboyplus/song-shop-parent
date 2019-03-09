@@ -34,6 +34,7 @@ public class UserServiceImpl extends BaseApiService implements UserService {
         if (StringUtils.isEmpty(userEntity.getPassword())){
             return setResultParameterError("密码不能为空!");
         }
+
         try{
             userServiceManage.register(userEntity);
             return setResultSuccess();

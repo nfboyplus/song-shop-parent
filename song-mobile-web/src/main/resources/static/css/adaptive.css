@@ -1,0 +1,83 @@
+/*
+**	自适应样式单
+*/
+
+/* 720+ */
+@media only screen and (min-width:720px){
+	body{font-size: 20px;}
+}
+
+/* 710 - 720 */
+@media only screen and (max-width: 720px) and (min-width: 710px){
+	body{font-size: 19.72222px;}
+}
+
+/* 640 - 710 */
+@media only screen and (max-width: 710px) and (min-width: 640px){
+	body{font-size: 17.77778px;}
+}
+
+/* 630 -640 */
+@media only screen and (max-width: 640px) and (min-width: 630px){
+	body{font-size: 17.5px;}
+}
+
+/* 570 - 630 */
+@media only screen and (max-width: 630px) and (min-width: 570px){
+	body{font-size: 15.83333px;}
+}
+
+/* 560 - 570 */
+@media only screen and (max-width: 570px) and (min-width: 560px){
+	body{font-size: 15.55556px;}
+}
+
+/* 540 - 560 */
+@media only screen and (max-width: 560px) and (min-width: 540px){
+	body {font-size: 15px;}
+}
+
+/* 480 - 540 */
+@media only screen and (max-width: 540px) and (min-width: 480px){
+	body{font-size: 13.33333px;}
+}
+
+/* 470 - 480 */
+@media only screen and (max-width:480px) and (min-width:470px){
+	body{font-size:13.05556px;}
+}
+
+/* 400 - 470 */
+@media only screen and (max-width:470px) and (min-width:400px){
+	body{font-size:11.11111px}
+}
+
+/*360 - 400*/
+@media only screen and (max-width:400px) and (min-width:360px){
+	body{font-size:10px}
+}
+
+/*350 - 360*/
+@media only screen and (max-width:360px) and (min-width:350px){
+	body{font-size:9.72222px}
+}
+
+/* 320 - 350 */
+@media only screen and (max-width:350px) and (min-width:320px){
+	body{font-size:8.88889px}
+}
+
+/* 310 - 320 */
+@media only screen and (max-width:320px) and (min-width:310px){
+	body{font-size:8.61111px}
+}
+
+/* 300 - 310 */
+@media only screen and (max-width:310px) and (min-width:300px){
+	body{font-size:8.33333px}
+}
+
+/* 300- */
+@media only screen and (max-width:300px){
+	body{font-size:8.33333px;}
+}

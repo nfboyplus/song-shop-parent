@@ -1,0 +1,128 @@
+html, body, #wrapper {
+	height: 100%;
+}
+.page-shopping {
+	background-color: #fff;
+}
+.header {
+	position: relative;
+	background-color: #f4f4f4;
+	border-bottom: 1px solid #eee;
+}
+.header .left {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.header .left .home {
+	display: inline-block;
+	padding: .8em 1.5em;
+}
+.header .left .home span {
+	padding: .2em 0;
+	display: inline-block;
+	font-size: 2em;
+	color: #464646;
+}
+.header .left .home .icon-home {
+	padding: 0;
+	font-size: 2.8em;
+}
+.icon-home:before {
+	content: "\e607";
+}
+.header .tit {
+	text-align: center;
+	height: 5em;
+}
+.header .tit h2 {
+	padding: 1.2em 0 0;
+}
+.header .tit span {
+	font-size: 2em;
+	color: #464646;
+	font-weight: 300;
+}
+.header .right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em 0 0;
+}
+.header .right li {
+	float: left;
+}
+.header .right li a {
+	display: block;
+	padding: 1em .5em 1em .7em;
+	position: relative;
+}
+.header .right .cart .icon-gouwuche {
+	font-size: 2.6em;
+	color: #666;
+}
+.icon-gouwuche:before {
+	content: "\e606";
+}
+.page-shopping .shopping-empty {
+	text-align: center;
+	background: #f4f4f4;
+}
+.page-shopping .shopping-empty .tips_msg {
+	padding: 7em 0 0;
+}
+.page-shopping .shopping-empty .img {
+	width: 16.55em;
+	margin-bottom: 3em;
+}
+.page-shopping .shopping-empty h3 {
+	font-size: 1.7em;
+	color: #50555b;
+	padding: 0 0 .29412em;
+}
+.page-shopping .shopping-empty p {
+	font-size: 1.2em;
+	color: #87888c;
+}
+.page-shopping .shopping-empty .tips_btn {
+	margin: 0 auto;
+	padding: 5em 0;
+	text-align: center;
+	width: 17em;
+}
+
+.xm-button {
+	display: block;
+	-webkit-border-radius: .3em;
+	-moz-border-radius: .3em;
+	-ms-border-radius: .3em;
+	-o-border-radius: .3em;
+	border-radius: .3em;
+	background-color: #f60;
+	text-align: center;
+	height: 4em;
+	line-height: 4em;
+}
+.xm-button span, .xm-button a {
+	font-size: 1.6em;
+	color: #fff;
+	display: block;
+}
+.xm-button:active, .xm-button:hover {
+	-webkit-box-shadow: rgba(0,0,0,.3) 0 .1em .2em .05em inset;
+	-moz-box-shadow: rgba(0,0,0,.3) 0 .1em .2em .05em inset;
+	-ms-box-shadow: rgba(0,0,0,.3) 0 .1em .2em .05em inset;
+	-o-box-shadow: rgba(0,0,0,.3) 0 .1em .2em .05em inset;
+	box-shadow: rgba(0,0,0,.3) 0 .1em .2em .05em inset;
+}
+
+.xm-button-gray {
+	background-color: #fdfdfd;
+	border: 1px solid #bbb;
+}
+.page-shopping .shopping-empty .tips_btn a {
+	color: #515459;
+}
+.xm-button-gray span {
+	color: #666;
+}

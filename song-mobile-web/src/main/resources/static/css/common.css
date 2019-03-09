@@ -1,0 +1,49 @@
+/*
+**	共用CSS文件
+*/
+
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	word-wrap: break-word;
+}
+body{
+	font-size: 20px;
+	background-color: #f4f4f4;
+	min-width: 300px;
+}
+html, body, .wrapper{
+	height: 100%;
+}
+a, input, textarea{
+	text-decoration: none;
+	outline: 0;
+}
+ol, ul{
+	list-style: none;
+}
+li, img, label, input{
+	vertical-align: middle;
+}
+/*图标字体*/
+@font-face{
+	font-family:iconfont;
+	src:url(../fonts/iconfont1.eot?9owfml);
+	src:url(../fonts/iconfont1.eot?#iefix9owfml) format("embedded-opentype"),url(../fonts/iconfont2.woff?9owfml) format("woff"),url(../fonts/iconfont3.ttf?9owfml) format("truetype"),url(../fonts/iconfont4.svg?9owfml#icomoon) format("svg");
+	font-weight:400;
+	font-style:normal
+}
+/* 以icon-开头，包含icon-的class */
+[class^=icon-],[class*="icon-"],.iconfont{
+	font-family: iconfont !important;
+	speak: none;
+	font-style: normal;
+	font-weight: 400;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
