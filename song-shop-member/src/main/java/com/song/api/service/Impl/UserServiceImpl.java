@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -41,5 +42,25 @@ public class UserServiceImpl extends BaseApiService implements UserService {
             return setResultError("注册失败!");
         }
     }
+
+    @Override
+    public Map<String, Object> login(@RequestBody UserEntity userEntity) {
+        if (StringUtils.isEmpty(userEntity.getPhone())){
+            return setResultParameterError("手机号不能为空!");
+        }
+        if (StringUtils.isEmpty(userEntity.getPassword())){
+            return setResultParameterError("密码不能为空!");
+        }
+        return userServiceManage.login(userEntity);
+    }
+
+    @Override
+    public Map<String, Object> getUser(@RequestParam("token") String token) {
+        if (StringUtils.isEmpty(token)){
+            return setResultParameterError("token不能为空!");
+        }
+        return userServiceManage.getUser(token);
+    }
+
 
 }

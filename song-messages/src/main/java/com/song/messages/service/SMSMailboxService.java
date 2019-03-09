@@ -28,7 +28,6 @@ public class SMSMailboxService implements MessageAdapter {
         String mail = jsonObject.getString("mail");
         String userName = jsonObject.getString("userName");
         log.info("--- 消费者收到消息... mail:{},userName:{}", mail, userName);
-        // 发送邮件
         // 开始发送邮件
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mail);

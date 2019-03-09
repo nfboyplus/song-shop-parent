@@ -2,6 +2,8 @@ package com.song.manage;
 
 import com.song.entity.UserEntity;
 
+import java.util.Map;
+
 /**
  * created on 2019/3/8 13:49
  *
@@ -25,5 +27,9 @@ public interface UserServiceManage {
      * @return
      */
     public String md5PassSalt(String phone, String password);
+
+    public Map<String, Object> login(UserEntity userEntity);
+
+    public Map<String, Object> getUser(String token);
 
 }

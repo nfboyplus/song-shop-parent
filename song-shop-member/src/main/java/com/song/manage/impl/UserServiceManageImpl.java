@@ -1,21 +1,27 @@
 package com.song.manage.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.song.common.constants.MQInterfaceType;
-import com.song.dao.UserDao;
-import com.song.manage.UserServiceManage;
+import com.song.common.api.BaseApiService;
+import com.song.common.constants.Constants;
 import com.song.common.constants.DBTableName;
+import com.song.common.constants.MQInterfaceType;
+import com.song.common.redis.BaseRedisService;
 import com.song.common.utils.DateUtils;
 import com.song.common.utils.MD5Util;
+import com.song.common.utils.TokenUtils;
+import com.song.dao.UserDao;
 import com.song.entity.UserEntity;
+import com.song.manage.UserServiceManage;
 import com.song.mq.producer.RegisterMailboxProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.jms.Destination;
+import java.util.Map;
 
 /**
  * created on 2019/3/8 13:51
@@ -25,10 +31,16 @@ import javax.jms.Destination;
  */
 @Slf4j
 @Service
-public class UserServiceManageImpl implements UserServiceManage {
+public class UserServiceManageImpl extends BaseApiService implements UserServiceManage {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private TokenUtils tokenUtils;
+
+    @Autowired
+    private BaseRedisService baseRedisService;
 
     @Autowired
     private RegisterMailboxProducer registerMailboxProducer;
@@ -54,6 +66,7 @@ public class UserServiceManageImpl implements UserServiceManage {
 
     /**
      * 组装报文
+     *
      * @param email
      * @param userName
      * @return
@@ -74,6 +87,43 @@ public class UserServiceManageImpl implements UserServiceManage {
     public String md5PassSalt(String phone, String password) {
         String newPassword = MD5Util.MD5(phone + password);
         return newPassword;
+    }
+
+    /**
+     * 登录查找并生成 Token
+     *
+     * @param userEntity
+     * @return
+     */
+    @Override
+    public Map<String, Object> login(UserEntity userEntity) {
+        //往数据库进行查找数据
+        String phone = userEntity.getPhone();
+        String password = userEntity.getPassword();
+        String newPassword = md5PassSalt(phone, password);
+        UserEntity userPhoneAndPwd = userDao.getUserPhoneAndPwd(phone, newPassword);
+        if (userPhoneAndPwd == null) {
+            return setResultError("账号或密码错误!");
+        }
+        //生成对应的 token
+        String token = tokenUtils.getToken();
+        Long userId = userPhoneAndPwd.getId();
+        //key为自定义令牌,用户的userId作作为value 存放在redis中
+        baseRedisService.set(token, userId + "", Constants.USER_TOKEN_TERM_VALIDITY);
+        return setResultSuccessData(token);
+    }
+
+    @Override
+    public Map<String, Object> getUser(String token) {
+        //从redis中查找userId
+        String userId = baseRedisService.get(token);
+        if (StringUtils.isEmpty(userId)){
+            return setResultError("用户已经过期!");
+        }
+        Long newUserId = Long.parseLong(userId);
+        UserEntity userEntity = userDao.getUserInfo(newUserId);
+        userEntity.setPassword(null);
+        return setResultSuccessData(userEntity);
     }
 
 }
