@@ -1,5 +1,7 @@
 package song.mobile.web.controller;
 
+import com.qq.connect.QQConnectException;
+import com.qq.connect.oauth.Oauth;
 import com.song.common.constants.BaseApiConstants;
 import com.song.common.constants.Constants;
 import com.song.common.utils.CookieUtil;
@@ -46,4 +48,11 @@ public class LoginController extends BaseController{
         CookieUtil.addCookie(response, Constants.USER_TOKEN, token, Constants.WEBUSER_COOKIE_TOKEN_TERMVALIDITY);
         return INDEX;
     }
+
+    @RequestMapping("l/ocalQQLogin")
+    public String localQQLogin(HttpServletRequest request) throws QQConnectException {
+        String authorizeURL = new Oauth().getAuthorizeURL(request);
+        return "redirect:" + authorizeURL;
+    }
+    
 }
