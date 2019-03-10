@@ -16,9 +16,12 @@ import org.apache.ibatis.annotations.Select;
 public interface UserDao extends BaseDao {
 
     @Select("select id,userName,password,phone,email,created,updated from mb_user where phone = #{phone} and password=#{password}")
-    public UserEntity getUserPhoneAndPwd(@Param("phone") String userName, @Param("password") String password);
+    public UserEntity getUserPhoneAndPwd(@Param("phone") String phone, @Param("password") String password);
 
     @Select("select id,userName,password,phone,email, created,updated from mb_user where id = #{id}")
     public UserEntity getUserInfo(@Param("id") Long id);
+
+    @Select("select id,userName,password,phone,email, created,updated from mb_user where phone = #{phone} or email=#{email}")
+    public UserEntity getUser(@Param("phone") String phone, @Param("email") String email);
 
 }

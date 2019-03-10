@@ -1,6 +1,7 @@
 package song.mobile.web.controller;
 
 import com.song.common.constants.BaseApiConstants;
+import com.song.common.enums.MsgCode;
 import com.song.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,7 @@ public class RegisterController extends BaseController {
             //注册成功
             return LGOIN;
         } catch (Exception e) {
-            return setError(request, "注册失败", LOCALREGISTER);
+            return setError(request, MsgCode.SYS_REGISTER_FAIL.getMessage(), LOCALREGISTER);
         }
     }
 

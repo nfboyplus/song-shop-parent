@@ -32,4 +32,6 @@ public interface UserServiceManage {
 
     public Map<String, Object> getUser(String token);
 
+    public UserEntity getUserInfo(String phone, String email);
+
 }

@@ -1,6 +1,7 @@
 package com.song.api.service.Impl;
 
 import com.song.api.service.UserService;
+import com.song.common.enums.MsgCode;
 import com.song.manage.UserServiceManage;
 import com.song.common.api.BaseApiService;
 import com.song.entity.UserEntity;
@@ -29,28 +30,31 @@ public class UserServiceImpl extends BaseApiService implements UserService {
     @Override
     public Map<String, Object> register(@RequestBody UserEntity userEntity) {
         if (StringUtils.isEmpty(userEntity.getUserName())){
-            return setResultParameterError("用户名称不能为空!");
+            return setResultParameterError(MsgCode.SYS_USER_NAME_NOT_NULL.getMessage());
         }
         if (StringUtils.isEmpty(userEntity.getPassword())){
-            return setResultParameterError("密码不能为空!");
+            return setResultParameterError(MsgCode.SYS_PASSWORD_NOT_NULL.getMessage());
         }
-
+        UserEntity user = userServiceManage.getUserInfo(userEntity.getPhone(), userEntity.getEmail());
+        if (null != user){
+            return setResultError(MsgCode.SYS_USER_IS_EXIT.getMessage());
+        }
         try{
             userServiceManage.register(userEntity);
             return setResultSuccess();
         }catch (Exception e){
             log.error("--- register() ERROR:", e);
-            return setResultError("注册失败!");
+            return setResultError(MsgCode.SYS_REGISTER_FAIL.getMessage());
         }
     }
 
     @Override
     public Map<String, Object> login(@RequestBody UserEntity userEntity) {
         if (StringUtils.isEmpty(userEntity.getPhone())){
-            return setResultParameterError("手机号不能为空!");
+            return setResultParameterError(MsgCode.SYS_PHONE_NOT_NULL.getMessage());
         }
         if (StringUtils.isEmpty(userEntity.getPassword())){
-            return setResultParameterError("密码不能为空!");
+            return setResultParameterError(MsgCode.SYS_PASSWORD_NOT_NULL.getMessage());
         }
         return userServiceManage.login(userEntity);
     }
@@ -58,7 +62,7 @@ public class UserServiceImpl extends BaseApiService implements UserService {
     @Override
     public Map<String, Object> getUser(@RequestParam("token") String token) {
         if (StringUtils.isEmpty(token)){
-            return setResultParameterError("token不能为空!");
+            return setResultParameterError(MsgCode.SYS_TOKEN_NOT_NULL.getMessage());
         }
         return userServiceManage.getUser(token);
     }

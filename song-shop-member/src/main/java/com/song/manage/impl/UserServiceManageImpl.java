@@ -5,6 +5,7 @@ import com.song.common.api.BaseApiService;
 import com.song.common.constants.Constants;
 import com.song.common.constants.DBTableName;
 import com.song.common.constants.MQInterfaceType;
+import com.song.common.enums.MsgCode;
 import com.song.common.redis.BaseRedisService;
 import com.song.common.utils.DateUtils;
 import com.song.common.utils.MD5Util;
@@ -19,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.jms.Destination;
 import java.util.Map;
@@ -49,6 +51,7 @@ public class UserServiceManageImpl extends BaseApiService implements UserService
     private String MESSAGES_QUEUE;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void register(UserEntity userEntity) {
         userEntity.setCreated(DateUtils.getTimestamp());
         userEntity.setUpdated(DateUtils.getTimestamp());
@@ -103,7 +106,7 @@ public class UserServiceManageImpl extends BaseApiService implements UserService
         String newPassword = md5PassSalt(phone, password);
         UserEntity userPhoneAndPwd = userDao.getUserPhoneAndPwd(phone, newPassword);
         if (userPhoneAndPwd == null) {
-            return setResultError("账号或密码错误!");
+            return setResultError(MsgCode.SYS_ACCOUNT_ERROR.getMessage());
         }
         //生成对应的 token
         String token = tokenUtils.getToken();
@@ -118,12 +121,17 @@ public class UserServiceManageImpl extends BaseApiService implements UserService
         //从redis中查找userId
         String userId = baseRedisService.get(token);
         if (StringUtils.isEmpty(userId)){
-            return setResultError("用户已经过期!");
+            return setResultError(MsgCode.SYS_INVALID_LOGIN.getMessage());
         }
         Long newUserId = Long.parseLong(userId);
         UserEntity userEntity = userDao.getUserInfo(newUserId);
         userEntity.setPassword(null);
         return setResultSuccessData(userEntity);
+    }
+
+    @Override
+    public UserEntity getUserInfo(String phone, String email) {
+        return userDao.getUser(phone, email);
     }
 
 }
