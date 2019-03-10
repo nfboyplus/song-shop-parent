@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>注册微信商城账户</title>
-    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
     <!-- ios系统的私有标签，它指定在web app状态下，ios设备中顶端的状态条的颜色 -->
-    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <!-- 设备浏览网页时对数字不启用电话功能 -->
-    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta content="telephone=no,email=no" name="format-detection"/>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
@@ -33,10 +33,10 @@
             id="lsrp_appName"></h2>
 
 
-
         <div class="nl-phone-tip">
             <div id="message_LOGIN_PHONETIP">非大陆地区请在手机号码前面添加当地的国际代码前缀(如香港
-                +852 台湾 +886)</div>
+                +852 台湾 +886)
+            </div>
             <div id="select_country_code">帮助</div>
         </div>
 
@@ -53,7 +53,8 @@
                                    data-rule="(^[\w.\-]+@(?:[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\.)+[A-Za-z]{2,6}$)|(^1\d{10}$)|(^\d{3,}$)|(^\++\d{2,}$)"
                                    id="miniLogin_username" name="userName" autocomplete="off"
                                    placeholder="用户名称"> <i class="placeholder hide"
-                                                          id="message_INPUT_IDENTITY">用户名称</i> <span class="error-tip"><em
+                                                          id="message_INPUT_IDENTITY">用户名称</i> <span
+                                    class="error-tip"><em
                                         class="error-ico"></em><span class="error-msg"></span></span>
                         </div>
                         <div class="enter-area" id="enter_user">
@@ -78,7 +79,8 @@
                                    data-rule="(^[\w.\-]+@(?:[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*\.)+[A-Za-z]{2,6}$)|(^1\d{10}$)|(^\d{3,}$)|(^\++\d{2,}$)"
                                    id="miniLogin_phone" name="phone" autocomplete="off"
                                    placeholder="手机号码"> <i class="placeholder hide"
-                                                          id="message_INPUT_IDENTITY">手机号码</i> <span class="error-tip"><em
+                                                          id="message_INPUT_IDENTITY">手机号码</i> <span
+                                    class="error-tip"><em
                                         class="error-ico"></em><span class="error-msg"></span></span>
                         </div>
                         <div class="enter-area" style="z-index: 20;">
@@ -117,7 +119,6 @@
             <p class="web-info-content" id="web_info_content"></p>
         </div>
     </div>
-
-    <a target="_blank"></a>
+    <#include "common/bottom.ftl">
 </body>
 </html>
