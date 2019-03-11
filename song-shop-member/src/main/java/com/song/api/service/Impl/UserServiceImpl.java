@@ -1,10 +1,10 @@
 package com.song.api.service.Impl;
 
 import com.song.api.service.UserService;
-import com.song.common.enums.MsgCode;
-import com.song.manage.UserServiceManage;
 import com.song.common.api.BaseApiService;
+import com.song.common.enums.MsgCode;
 import com.song.entity.UserEntity;
+import com.song.manage.UserServiceManage;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +68,8 @@ public class UserServiceImpl extends BaseApiService implements UserService {
     }
 
     @Override
-    public Map<String, Object> findLogin(@RequestParam String userOpenId) {
-        return userServiceManage.findLogin(userOpenId);
+    public Map<String, Object> findLogin(@RequestParam String openId) {
+        return userServiceManage.findLogin(openId);
     }
 
 

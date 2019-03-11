@@ -1,6 +1,7 @@
 package song.mobile.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.song.common.api.BaseApiService;
 import com.song.common.constants.BaseApiConstants;
 import com.song.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.Map;
  * @version 1.0.0
  */
 @Controller
-public class BaseController {
+public class BaseController extends BaseApiService {
 
     public static final String ERROR = "common/error";
 

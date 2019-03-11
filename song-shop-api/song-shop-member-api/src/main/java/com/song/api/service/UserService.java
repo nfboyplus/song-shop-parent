@@ -42,9 +42,9 @@ public interface UserService {
     /**
      * 使用openId查找用户信息
      *
-     * @param userOpenId
+     * @param openId
      * @return
      */
     @PostMapping("/findOpenId")
-    public Map<String, Object> findLogin(@RequestParam String userOpenId);
+    public Map<String, Object> findLogin(@RequestParam("openId") String openId);
 }
