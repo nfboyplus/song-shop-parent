@@ -19,7 +19,9 @@ public enum MsgCode {
     SYS_USER_NAME_NOT_NULL("00005", "用户名不能为空!"),
     SYS_REGISTER_FAIL("00006", "注册失败，请重新注册!"),
     SYS_PHONE_NOT_NULL("00007", "手机号不能为空!"),
-    SYS_TOKEN_NOT_NULL("00008", "token不能为空!");
+    SYS_TOKEN_NOT_NULL("00008", "token不能为空!"),
+    SYS_QQ_IS_FAIL("00009", "QQ授权登录失败!"),
+    SYS_USER_IS_NOT_EXIT("00009", "没有关联的用户!");
 
 
     String code;

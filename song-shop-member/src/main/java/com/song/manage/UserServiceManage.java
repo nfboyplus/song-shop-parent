@@ -34,4 +34,5 @@ public interface UserServiceManage {
 
     public UserEntity getUserInfo(String phone, String email);
 
+    public Map<String, Object> findLogin(String userOpenId);
 }

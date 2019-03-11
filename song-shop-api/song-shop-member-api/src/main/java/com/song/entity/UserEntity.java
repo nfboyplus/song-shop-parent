@@ -32,4 +32,9 @@ public class UserEntity extends BaseEntity {
      */
     private String email;
 
+    /**
+     * QQ关联Id
+     */
+    private String openId;
+
 }

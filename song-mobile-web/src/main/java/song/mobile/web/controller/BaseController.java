@@ -20,6 +20,8 @@ import java.util.Map;
 @Controller
 public class BaseController {
 
+    public static final String ERROR = "common/error";
+
     @Autowired
     private UserFeign userFeign;
 

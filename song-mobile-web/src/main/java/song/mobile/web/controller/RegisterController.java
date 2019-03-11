@@ -5,6 +5,7 @@ import com.song.common.enums.MsgCode;
 import com.song.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import song.mobile.web.feign.UserFeign;
 
@@ -38,7 +39,7 @@ public class RegisterController extends BaseController {
      * @return
      */
     @RequestMapping("/register")
-    public String register(HttpServletRequest request, UserEntity userEntity) {
+    public String register(HttpServletRequest request, @ModelAttribute("user")UserEntity userEntity) {
         try {
             Map<String, Object> registerMap = userFeign.register(userEntity);
             Integer code = (Integer) registerMap.get(BaseApiConstants.HTTP_CODE_NAME);

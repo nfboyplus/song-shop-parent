@@ -34,4 +34,29 @@ public class BaseProvider {
         return sql.toString();
     }
 
+    /**
+     *
+     * @methodDesc: 功能描述:(自定义封装sql语句)
+     * @param: @return
+     */
+    static public String update(Map<String, Object> map) {
+        // 实体类
+        Object object = map.get("object");
+        // 表名称
+        String table = (String) map.get("table");
+        // id
+        Long id = (Long) map.get("id");
+        // 生成添加的sql语句。 使用反射机制
+        // 步驟：使用反射机制加载这个类所有属性
+        SQL sql = new SQL() {
+            {
+
+                UPDATE(table);
+                SET(ReflectionUtils.fatherAndSonFieldValue(object));
+                WHERE(" id= " + id);
+            }
+        };
+        return sql.toString();
+    }
+
 }

@@ -16,6 +16,7 @@ import com.song.manage.UserServiceManage;
 import com.song.mq.producer.RegisterMailboxProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -108,11 +109,15 @@ public class UserServiceManageImpl extends BaseApiService implements UserService
         if (userPhoneAndPwd == null) {
             return setResultError(MsgCode.SYS_ACCOUNT_ERROR.getMessage());
         }
-        //生成对应的 token
-        String token = tokenUtils.getToken();
-        Long userId = userPhoneAndPwd.getId();
-        //key为自定义令牌,用户的userId作作为value 存放在redis中
-        baseRedisService.set(token, userId + "", Constants.USER_TOKEN_TERM_VALIDITY);
+        String openId = userEntity.getOpenId();
+        if (!StringUtils.isEmpty(openId)){
+            //关联到数据库中，update
+            UserEntity newUserEntity = new UserEntity();
+            newUserEntity.setOpenId(openId);
+            newUserEntity.setUpdated(DateUtils.getTimestamp());
+            userDao.update(newUserEntity, DBTableName.TABLE_MB_USER, userPhoneAndPwd.getId());
+        }
+        String token = setLoginToken(userPhoneAndPwd.getId());
         return setResultSuccessData(token);
     }
 
@@ -132,6 +137,25 @@ public class UserServiceManageImpl extends BaseApiService implements UserService
     @Override
     public UserEntity getUserInfo(String phone, String email) {
         return userDao.getUser(phone, email);
+    }
+
+    @Override
+    public Map<String, Object> findLogin(String openId) {
+        UserEntity userEntity = userDao.findOpenId(openId);
+        if (null == userEntity){
+            return setResultError(MsgCode.SYS_USER_IS_NOT_EXIT.getMessage());
+        }
+        //自动登录
+        String token = setLoginToken(userEntity.getId());
+        return setResultSuccessData(token);
+    }
+
+    private String setLoginToken(Long userId) {
+        //生成对应的token
+        String token = tokenUtils.getToken();
+        //key为自定义令牌,用户的userId作作为value 存放在redis中
+        baseRedisService.set(token, userId + "", Constants.USER_TOKEN_TERM_VALIDITY);
+        return token;
     }
 
 }

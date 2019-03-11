@@ -17,4 +17,7 @@ public interface BaseDao {
     @InsertProvider(type = BaseProvider.class,method="save")
     public void save(@Param("object")Object object, @Param("table")String table);
 
+    @InsertProvider(type = BaseProvider.class, method = "update")
+    public void update(@Param("object") Object object, @Param("table") String table, @Param("id") Long id);
+
 }
