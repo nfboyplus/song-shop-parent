@@ -8,10 +8,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="song-messages" />
         <module name="song-mobile-web" />
+        <module name="song-shop-commodity" />
+        <module name="song-shop-commodity-api" />
         <module name="song-shop-common" />
         <module name="song-shop-eurekaserver" />
         <module name="song-shop-member" />
         <module name="song-shop-member-api" />
+        <module name="song-shop-pay" />
+        <module name="song-shop-pay-api" />
+        <module name="song-shop-pay-web" />
       </profile>
     </annotationProcessing>
   </component>

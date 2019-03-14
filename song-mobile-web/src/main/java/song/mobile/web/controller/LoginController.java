@@ -9,6 +9,7 @@ import com.song.common.constants.Constants;
 import com.song.common.enums.MsgCode;
 import com.song.common.utils.CookieUtil;
 import com.song.entity.UserEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import java.util.Map;
  * @author nfboy_liusong@163.com
  * @version 1.0.0
  */
+@Slf4j
 @Controller
 public class LoginController extends BaseController {
 
@@ -111,7 +113,7 @@ public class LoginController extends BaseController {
             // 没有绑定openid
             httpSession.setAttribute(Constants.USER_SESSION_OPENID, userOpenId);
         } catch (Exception e) {
-
+            log.info("QQ回调地址异常！");
         }
         // 跳转到关联页面
         return ASSOCIATED_ACCOUNT;

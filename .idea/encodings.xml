@@ -5,9 +5,14 @@
     <file url="file://$PROJECT_DIR$/song-messages" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-mobile-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/song-shop-api/song-shop-commodity-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-api/song-shop-member-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/song-shop-api/song-shop-pay-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/song-shop-commodity" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-eurekaserver" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/song-shop-member" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/song-shop-pay" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/song-shop-pay-web" charset="UTF-8" />
   </component>
 </project>

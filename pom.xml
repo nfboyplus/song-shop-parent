@@ -14,6 +14,9 @@
         <module>song-shop-common</module>
         <module>song-messages</module>
         <module>song-mobile-web</module>
+        <module>song-shop-pay</module>
+        <module>song-shop-pay-web</module>
+        <module>song-shop-commodity</module>
     </modules>
     <packaging>pom</packaging>
 
