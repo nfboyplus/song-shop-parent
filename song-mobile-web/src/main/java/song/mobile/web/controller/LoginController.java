@@ -45,6 +45,16 @@ public class LoginController extends BaseController {
         return LOGIN;
     }
 
+    /**
+     * 登录
+     *
+     * @param userEntity
+     * @param source
+     * @param request
+     * @param httpSession
+     * @param response
+     * @return
+     */
     @RequestMapping("/login")
     public String login(@ModelAttribute("user") UserEntity userEntity, @ModelAttribute("source") String source,
                         HttpServletRequest request, HttpSession httpSession, HttpServletResponse response) {
@@ -108,7 +118,7 @@ public class LoginController extends BaseController {
                 // 已经授权过,自动登录
                 String token = (String) openIdMap.get("data");
                 CookieUtil.addCookie(response, Constants.USER_TOKEN, token, Constants.WEBUSER_COOKIE_TOKEN_TERMVALIDITY);
-                return "redirect:/" +INDEX;
+                return "redirect:/" + INDEX;
             }
             // 没有绑定openid
             httpSession.setAttribute(Constants.USER_SESSION_OPENID, userOpenId);
